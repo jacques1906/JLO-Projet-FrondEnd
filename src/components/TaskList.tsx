@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import '../styles/components/TaskList.css'
+import Notification from './Notification'
 
 interface Task {
   id: number
@@ -11,6 +12,11 @@ interface Task {
 const TaskList = () => {
   const [tasks, setTasks] = useState<Task[]>([])
   const [newTask, setNewTask] = useState('')
+  const [notification, setNotification] = useState<string | null>(null)
+
+  const showNotification = (message: string) => {
+    setNotification(message)
+  }
 
   const addTask = (e: React.FormEvent) => {
     e.preventDefault()
@@ -29,13 +35,19 @@ const TaskList = () => {
   }
 
   const toggleTask = (taskId: number) => {
-    setTasks(tasks.map(task =>
-      task.id === taskId ? { ...task, completed: !task.completed } : task
-    ))
+    setTasks(tasks.map(task => {
+      if (task.id === taskId) {
+        const newStatus = !task.completed
+        showNotification(`Tâche ${newStatus ? 'terminée' : 'réactivée'}`)
+        return { ...task, completed: newStatus }
+      }
+      return task
+    }))
   }
 
   const deleteAllCompleted = () => {
     setTasks(tasks.filter(task => !task.completed))
+    showNotification('Toutes les tâches terminées ont été supprimées')
   }
 
   const pendingTasks = tasks
@@ -80,6 +92,12 @@ const TaskList = () => {
 
   return (
     <div className="task-list-container">
+      {notification && (
+        <Notification 
+          message={notification} 
+          onClose={() => setNotification(null)} 
+        />
+      )}
       <form onSubmit={addTask} className="task-form">
         <input
           type="text"
