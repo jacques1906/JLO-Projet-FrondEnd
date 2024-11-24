@@ -9,7 +9,12 @@ interface Task {
   createdAt: Date
 }
 
-const TaskList = () => {
+interface TaskListProps {
+  showPendingOnly?: boolean
+  showCompletedOnly?: boolean
+}
+
+const TaskList = ({ showPendingOnly, showCompletedOnly }: TaskListProps = {}) => {
   const [tasks, setTasks] = useState<Task[]>([])
   const [newTask, setNewTask] = useState('')
   const [notification, setNotification] = useState<string | null>(null)
@@ -90,6 +95,21 @@ const TaskList = () => {
     </div>
   )
 
+  const tasksToShow = () => {
+    if (showPendingOnly) {
+      return renderTaskList(pendingTasks, "Tâches en cours", false)
+    }
+    if (showCompletedOnly) {
+      return renderTaskList(completedTasks, "Tâches terminées", true)
+    }
+    return (
+      <>
+        {renderTaskList(pendingTasks, "Tâches en cours", false)}
+        {renderTaskList(completedTasks, "Tâches terminées", true)}
+      </>
+    )
+  }
+
   return (
     <div className="task-list-container">
       {notification && (
@@ -109,8 +129,7 @@ const TaskList = () => {
         <button type="submit" className="add-button">Ajouter</button>
       </form>
 
-      {renderTaskList(pendingTasks, "Tâches en cours", false)}
-      {renderTaskList(completedTasks, "Tâches terminées", true)}
+      {tasksToShow()}
     </div>
   )
 }
