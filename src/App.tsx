@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
 import TaskList from './components/TaskList'
 import './App.css'
+import Settings from './components/Settings'
 
 const Navigation = () => {
   const location = useLocation()
@@ -20,6 +21,9 @@ const Navigation = () => {
       <Link to="/taches/terminees" className={isActive('/taches/terminees')}>
         Tâches terminées
       </Link>
+      <Link to="/parametres" className={isActive('/parametres')}>
+        Paramètres
+      </Link>
     </nav>
   )
 }
@@ -37,6 +41,7 @@ function App() {
             <Route path="/" element={<TaskList />} />
             <Route path="/taches/en-cours" element={<TaskList showPendingOnly={true} />} />
             <Route path="/taches/terminees" element={<TaskList showCompletedOnly={true} />} />
+            <Route path="/parametres" element={<Settings />} />
           </Routes>
         </main>
       </div>
