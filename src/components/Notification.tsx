@@ -17,7 +17,14 @@ const Notification = ({ message, onClose }: NotificationProps) => {
 
   return (
     <div className="notification">
-      {message}
+      <span className="notification-message">{message}</span>
+      <button 
+        className="notification-close" 
+        onClick={onClose}
+        aria-label="Fermer la notification"
+      >
+        ×
+      </button>
     </div>
   )
 }

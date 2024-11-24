@@ -2,6 +2,7 @@ import { createContext, useContext, useState, ReactNode, useEffect } from 'react
 import { ThemeColor } from '../types/theme'
 
 interface ThemeContextType {
+    
   themeColor: ThemeColor
   setThemeColor: (color: ThemeColor) => void
   colors: { 
