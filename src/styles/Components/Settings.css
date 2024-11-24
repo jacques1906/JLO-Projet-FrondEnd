@@ -31,4 +31,38 @@
 .setting-item input[type="checkbox"] {
   width: 1.2rem;
   height: 1.2rem;
+}
+
+.theme-colors {
+  margin-top: 2rem;
+}
+
+.theme-colors h4 {
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+.color-options {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.color-option {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.color-option:hover {
+  transform: scale(1.1);
+}
+
+.color-option.active {
+  border-color: white;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 } 
