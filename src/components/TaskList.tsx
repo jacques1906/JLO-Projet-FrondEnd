@@ -4,6 +4,8 @@ import '../styles/components/TaskList.css'
 interface Task {
   id: number
   text: string
+  completed: boolean
+  createdAt: Date
 }
 
 const TaskList = () => {
@@ -17,11 +19,18 @@ const TaskList = () => {
         ...tasks,
         {
           id: Date.now(),
-          text: newTask.trim()
+          text: newTask.trim(),
+          completed: false
         }
       ])
       setNewTask('')
     }
+  }
+
+  const toggleTask = (taskId: number) => {
+    setTasks(tasks.map(task =>
+      task.id === taskId ? { ...task, completed: !task.completed } : task
+    ))
   }
 
   return (
@@ -39,7 +48,13 @@ const TaskList = () => {
 
       <ul className="task-list">
         {tasks.map(task => (
-          <li key={task.id} className="task-item">
+          <li key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
+            <input
+              type="checkbox"
+              checked={task.completed}
+              onChange={() => toggleTask(task.id)}
+              className="task-checkbox"
+            />
             <span className="task-text">{task.text}</span>
           </li>
         ))}

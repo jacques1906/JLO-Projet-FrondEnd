@@ -34,7 +34,18 @@
   border-radius: 4px;
 }
 
+.task-checkbox {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 1rem;
+}
+
 .task-text {
   flex: 1;
   text-align: left;
+}
+
+.task-item.completed .task-text {
+  text-decoration: line-through;
+  opacity: 0.7;
 } 
