@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
 import TaskList from './components/TaskList'
-import './App.css'
 import Settings from './components/Settings'
+import { ThemeProvider } from './contexts/ThemeContext'
+import ThemeWrapper from './components/ThemeWrapper'
+import './App.css'
 
 const Navigation = () => {
   const location = useLocation()
@@ -31,20 +33,24 @@ const Navigation = () => {
 function App() {
   return (
     <Router>
-      <div className="app-container">
-        <header className="header">
-          <h1>Gestionnaire de Tâches</h1>
-          <Navigation />
-        </header>
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<TaskList />} />
-            <Route path="/taches/en-cours" element={<TaskList showPendingOnly={true} />} />
-            <Route path="/taches/terminees" element={<TaskList showCompletedOnly={true} />} />
-            <Route path="/parametres" element={<Settings />} />
-          </Routes>
-        </main>
-      </div>
+      <ThemeProvider>
+        <ThemeWrapper>
+          <div className="app-container">
+            <header className="header">
+              <h1>Gestionnaire de Tâches</h1>
+              <Navigation />
+            </header>
+            <main className="main-content">
+              <Routes>
+                <Route path="/" element={<TaskList />} />
+                <Route path="/taches/en-cours" element={<TaskList showPendingOnly={true} />} />
+                <Route path="/taches/terminees" element={<TaskList showCompletedOnly={true} />} />
+                <Route path="/parametres" element={<Settings />} />
+              </Routes>
+            </main>
+          </div>
+        </ThemeWrapper>
+      </ThemeProvider>
     </Router>
   )
 }
