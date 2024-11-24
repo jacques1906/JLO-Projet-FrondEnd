@@ -34,6 +34,10 @@ const TaskList = () => {
     ))
   }
 
+  const deleteAllCompleted = () => {
+    setTasks(tasks.filter(task => !task.completed))
+  }
+
   const pendingTasks = tasks
     .filter(task => !task.completed)
     .sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime())
@@ -42,9 +46,19 @@ const TaskList = () => {
     .filter(task => task.completed)
     .sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime())
 
-  const renderTaskList = (tasks: Task[], title: string) => (
+  const renderTaskList = (tasks: Task[], title: string, isCompleted: boolean) => (
     <div className="task-block">
-      <h2>{title}</h2>
+      <div className="task-block-header">
+        <h2>{title}</h2>
+        {isCompleted && completedTasks.length > 0 && (
+          <button 
+            onClick={deleteAllCompleted}
+            className="delete-all-button"
+          >
+            Tout supprimer
+          </button>
+        )}
+      </div>
       <ul className="task-list">
         {tasks.map(task => (
           <li key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
@@ -77,8 +91,8 @@ const TaskList = () => {
         <button type="submit" className="add-button">Ajouter</button>
       </form>
 
-      {renderTaskList(pendingTasks, "Tâches en cours")}
-      {renderTaskList(completedTasks, "Tâches terminées")}
+      {renderTaskList(pendingTasks, "Tâches en cours", false)}
+      {renderTaskList(completedTasks, "Tâches terminées", true)}
     </div>
   )
 }

@@ -65,4 +65,25 @@
   color: #888;
   margin-left: auto;
   padding-left: 1rem;
+}
+
+.task-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.delete-all-button {
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.delete-all-button:hover {
+  background-color: #ff2222;
 } 
