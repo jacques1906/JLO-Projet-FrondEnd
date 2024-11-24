@@ -20,7 +20,8 @@ const TaskList = () => {
         {
           id: Date.now(),
           text: newTask.trim(),
-          completed: false
+          completed: false,
+          createdAt: new Date()
         }
       ])
       setNewTask('')
@@ -32,6 +33,36 @@ const TaskList = () => {
       task.id === taskId ? { ...task, completed: !task.completed } : task
     ))
   }
+
+  const pendingTasks = tasks
+    .filter(task => !task.completed)
+    .sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime())
+
+  const completedTasks = tasks
+    .filter(task => task.completed)
+    .sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime())
+
+  const renderTaskList = (tasks: Task[], title: string) => (
+    <div className="task-block">
+      <h2>{title}</h2>
+      <ul className="task-list">
+        {tasks.map(task => (
+          <li key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
+            <input
+              type="checkbox"
+              checked={task.completed}
+              onChange={() => toggleTask(task.id)}
+              className="task-checkbox"
+            />
+            <span className="task-text">{task.text}</span>
+            <span className="task-date">
+              {task.createdAt.toLocaleDateString()}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
 
   return (
     <div className="task-list-container">
@@ -46,19 +77,8 @@ const TaskList = () => {
         <button type="submit" className="add-button">Ajouter</button>
       </form>
 
-      <ul className="task-list">
-        {tasks.map(task => (
-          <li key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
-            <input
-              type="checkbox"
-              checked={task.completed}
-              onChange={() => toggleTask(task.id)}
-              className="task-checkbox"
-            />
-            <span className="task-text">{task.text}</span>
-          </li>
-        ))}
-      </ul>
+      {renderTaskList(pendingTasks, "Tâches en cours")}
+      {renderTaskList(completedTasks, "Tâches terminées")}
     </div>
   )
 }
