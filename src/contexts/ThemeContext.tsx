@@ -10,6 +10,7 @@ interface ThemeContextType {
       text: string
       accent: string
       secondaryBackground: string
+      tertiaryBackground: string
     }
   }
 }
@@ -24,22 +25,25 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
   const colors = {
     dark: {
-      background: '#242424',
-      text: '#ffffff',
-      accent: '#646cff',
-      secondaryBackground: '#1a1a1a'
+      background: '#260C1A',
+      text: '#AF8D86',
+      accent: '#EDBFC6',
+      secondaryBackground: '#432E36',
+      tertiaryBackground: '#5F4842'
     },
     gray: {
       background: '#4a4a4a',
       text: '#ffffff',
       accent: '#747bff',
-      secondaryBackground: '#3a3a3a'
+      secondaryBackground: '#3a3a3a',
+      tertiaryBackground: '#2a2a2a'
     },
     beige: {
       background: '#f5f5dc',
       text: '#333333',
       accent: '#646cff',
-      secondaryBackground: '#ffffff'
+      secondaryBackground: '#ffffff',
+      tertiaryBackground: '#e5e5c5'
     }
   }
 

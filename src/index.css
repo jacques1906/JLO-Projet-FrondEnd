@@ -1,8 +1,9 @@
 :root {
-  --background-color: #242424;
-  --text-color: #ffffff;
-  --accent-color: #646cff;
-  --secondary-background: #1a1a1a;
+  --background-color: #260C1A;
+  --text-color: #AF8D86;
+  --accent-color: #EDBFC6;
+  --secondary-background: #432E36;
+  --tertiary-background: #5F4842;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -33,11 +34,15 @@ button {
 }
 
 .settings-section {
-  background: var(--secondary-background);
+  background: var(--tertiary-background);
+}
+
+.header {
+  background-color: var(--secondary-background);
 }
 
 .task-item {
-  background: var(--secondary-background);
+  background: var(--tertiary-background);
 }
 
 .task-input {
