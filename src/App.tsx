@@ -1,6 +1,28 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
 import TaskList from './components/TaskList'
 import './App.css'
+
+const Navigation = () => {
+  const location = useLocation()
+  
+  const isActive = (path: string) => {
+    return location.pathname === path ? 'nav-link active' : 'nav-link'
+  }
+
+  return (
+    <nav className="nav-links">
+      <Link to="/" className={isActive('/')}>
+        Toutes les tâches
+      </Link>
+      <Link to="/taches/en-cours" className={isActive('/taches/en-cours')}>
+        Tâches en cours
+      </Link>
+      <Link to="/taches/terminees" className={isActive('/taches/terminees')}>
+        Tâches terminées
+      </Link>
+    </nav>
+  )
+}
 
 function App() {
   return (
@@ -8,6 +30,7 @@ function App() {
       <div className="app-container">
         <header className="header">
           <h1>Gestionnaire de Tâches</h1>
+          <Navigation />
         </header>
         <main className="main-content">
           <Routes>
