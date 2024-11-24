@@ -13,10 +13,10 @@
 .task-input {
   flex: 1;
   padding: 0.8rem;
-  border: 1px solid #444;
+  border: 1px solid var(--accent-color);
   border-radius: 4px;
-  background: #1a1a1a;
-  color: white;
+  background: var(--secondary-background);
+  color: var(--text-color);
 }
 
 .task-list {

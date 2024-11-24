@@ -1,1 +1,1 @@
-export type ThemeColor = 'dark' | 'gray' | 'beige'
+export type ThemeColor = 'sombre' | 'gris' | 'beige'

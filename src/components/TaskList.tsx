@@ -63,37 +63,39 @@ const TaskList = ({ showPendingOnly, showCompletedOnly }: TaskListProps = {}) =>
     .filter(task => task.completed)
     .sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime())
 
-  const renderTaskList = (tasks: Task[], title: string, isCompleted: boolean) => (
-    <div className="task-block">
-      <div className="task-block-header">
-        <h2>{title}</h2>
-        {isCompleted && completedTasks.length > 0 && (
-          <button 
-            onClick={deleteAllCompleted}
-            className="delete-all-button"
-          >
-            Tout supprimer
-          </button>
-        )}
+  const renderTaskList = (tasks: Task[], title: string, showDeleteAll: boolean) => {
+    return (
+      <div className="task-block">
+        <div className="task-block-header">
+          <h2>{title}</h2>
+          {showDeleteAll && tasks.length > 0 && (
+            <button
+              onClick={deleteAllCompleted}
+              className="delete-all-button"
+            >
+              Tout supprimer
+            </button>
+          )}
+        </div>
+        <ul className="task-list">
+          {tasks.map(task => (
+            <li key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
+              <input
+                type="checkbox"
+                checked={task.completed}
+                onChange={() => toggleTask(task.id)}
+                className="task-checkbox"
+              />
+              <span className="task-text">{task.text}</span>
+              <span className="task-date">
+                {task.createdAt.toLocaleDateString()}
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
-      <ul className="task-list">
-        {tasks.map(task => (
-          <li key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
-            <input
-              type="checkbox"
-              checked={task.completed}
-              onChange={() => toggleTask(task.id)}
-              className="task-checkbox"
-            />
-            <span className="task-text">{task.text}</span>
-            <span className="task-date">
-              {task.createdAt.toLocaleDateString()}
-            </span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
+    )
+  }
 
   const tasksToShow = () => {
     if (showPendingOnly) {

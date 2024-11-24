@@ -18,21 +18,29 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
+export const useTheme = () => {
+  const context = useContext(ThemeContext)
+  if (context === undefined) {
+    throw new Error('useTheme must be used within a ThemeProvider')
+  }
+  return context
+}
+
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [themeColor, setThemeColor] = useState<ThemeColor>(() => {
     const saved = localStorage.getItem('theme')
-    return (saved as ThemeColor) || 'dark'
+    return (saved as ThemeColor) || 'sombre'
   })
 
   const colors = {
-    dark: {
-      background: '#260C1A',
+    sombre: {
+      background: '#000000',
       text: '#AF8D86',
       accent: '#EDBFC6',
-      secondaryBackground: '#432E36',
-      tertiaryBackground: '#5F4842'
+      secondaryBackground: '#1a1a1a',
+      tertiaryBackground: '#2a2a2a'
     },
-    gray: {
+    gris: {
       background: '#4a4a4a',
       text: '#ffffff',
       accent: '#747bff',
@@ -57,12 +65,4 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       {children}
     </ThemeContext.Provider>
   )
-}
-
-export const useTheme = () => {
-  const context = useContext(ThemeContext)
-  if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider')
-  }
-  return context
 } 
