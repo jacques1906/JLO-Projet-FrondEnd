@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .task-list-container {
   max-width: 600px;
   margin: 0 auto;
