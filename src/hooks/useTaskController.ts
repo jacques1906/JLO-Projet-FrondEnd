@@ -8,12 +8,12 @@ export const useTaskController = () => {
 
   if (!controllerRef.current) {
     controllerRef.current = new TaskController(() => {
-      setTasks([...controllerRef.current!.model.getTasks()])
+      setTasks([...controllerRef.current!.getTasks()])
     })
   }
 
   const updateTasks = useCallback(() => {
-    setTasks([...controllerRef.current!.model.getTasks()])
+    controllerRef.current!.fetchTasks()
   }, [])
 
   return {

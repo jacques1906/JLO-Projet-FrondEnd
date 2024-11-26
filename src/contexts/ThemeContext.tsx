@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react'
-import { ThemeColor, ThemeColors, ThemeContextType } from '../types/theme'
+import { ThemeColor, ThemeContextType } from '../types/theme'
 import { ThemeService } from '../services/ThemeService'
 import { LocalStorageService } from '../services/LocalStorageService'
 

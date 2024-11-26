@@ -1,37 +1,51 @@
-import { TaskModel } from '../models/TaskModel'
 import { Task } from '../types/task'
+import { MockApiService } from '../services/MockApiService'
 
 export class TaskController {
-  model: TaskModel
+  private tasks: Task[] = []
   private notifyChange: () => void
 
   constructor(notifyChange: () => void) {
-    this.model = new TaskModel()
     this.notifyChange = notifyChange
+    this.fetchTasks()
   }
 
-  addTask(text: string): void {
-    this.model.addTask(text)
+  getTasks(): Task[] {
+    return this.tasks
+  }
+
+  getPendingTasks(): Task[] {
+    return this.tasks.filter(task => !task.completed)
+  }
+
+  getCompletedTasks(): Task[] {
+    return this.tasks.filter(task => task.completed)
+  }
+
+  async fetchTasks(): Promise<void> {
+    this.tasks = await MockApiService.getTasks()
     this.notifyChange()
   }
 
-  toggleTask(taskId: number): void {
-    const task = this.model.toggleTask(taskId)
+  async addTask(text: string): Promise<void> {
+    const newTask = await MockApiService.addTask(text)
+    this.tasks.push(newTask)
+    this.notifyChange()
+  }
+
+  async toggleTask(taskId: number): Promise<void> {
+    const task = this.tasks.find(t => t.id === taskId)
     if (task) {
+      const updatedTask = await MockApiService.updateTask(taskId, !task.completed)
+      const index = this.tasks.findIndex(t => t.id === taskId)
+      this.tasks[index] = updatedTask
       this.notifyChange()
     }
   }
 
-  deleteCompletedTasks(): void {
-    this.model.deleteCompletedTasks()
+  async deleteCompletedTasks(): Promise<void> {
+    await MockApiService.deleteCompletedTasks()
+    this.tasks = this.tasks.filter(task => !task.completed)
     this.notifyChange()
-  }
-
-  getPendingTasks(): Task[] {
-    return this.model.getTasks().filter(task => !task.completed)
-  }
-
-  getCompletedTasks(): Task[] {
-    return this.model.getTasks().filter(task => task.completed)
   }
 }

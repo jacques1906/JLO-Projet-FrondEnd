@@ -1,51 +1,54 @@
-# React + TypeScript + Vite
+Gestionnaire de Tâches
+📋 Description
+Une application de gestion de tâches moderne développée avec React et TypeScript, offrant une interface utilisateur intuitive avec gestion de thèmes et notifications.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Cloner le projet
+git clone [url-du-projet]
 
-Currently, two official plugins are available:
+# Installer les dépendances
+npm install
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Lancer en développement
+npm run dev
 
-## Expanding the ESLint configuration
+# Build production
+npm run build
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Fonctionnalités
+Implémentées
+- Gestion complète des tâches (CRUD)
+- Filtrage des tâches (en cours/terminées)
+- Système de thèmes personnalisables (sombre/gris/beige)
+Notifications interactives
+- Interface responsive
+- Navigation entre les différentes vues
+- Simulation d'API avec délais réalistes
 
-- Configure the top-level `parserOptions` property like this:
+🛠 Technologies Utilisées
+Core
+- React 18 : Framework UI moderne et performant
+- TypeScript : Typage statique pour une meilleure maintenabilité
+- Vite : Build tool rapide et moderne
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+UI & Styling
+- TailwindCSS : Framework CSS utilitaire pour un développement rapide
+- React Router : Gestion du routing côté client
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Architecture
+- Pattern MVC modifié
+- Gestion d'état avec Context API
+- Services pour la logique métier
+- Composants réutilisables
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Structure du Projet
+src/
+├── components/    # Composants réutilisables
+├── contexts/      # Contextes React (thème, etc.)
+├── services/      # Services (API, storage)
+├── controllers/   # Logique métier
+├── types/         # Types TypeScript
+├── hooks/         # Hooks personnalisés
+└── views/         # Pages de l'application
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
-# JLO-Projet-FrondEnd
+Auteur
+Jacques Z
