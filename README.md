@@ -14,7 +14,7 @@ yarn  dev
 # Build production
 yarn build
 
-#Fonctionnalités
+# Fonctionnalités
 Implémentées
 - Gestion complète des tâches (CRUD)
 - Filtrage des tâches (en cours/terminées)
@@ -24,7 +24,7 @@ Notifications interactives
 - Navigation entre les différentes vues
 - Simulation d'API avec délais réalistes
 
-#🛠 Technologies Utilisées
+# 🛠 Technologies Utilisées
 Core
 - React 18 : Framework UI moderne et performant
 - TypeScript : Typage statique pour une meilleure maintenabilité
@@ -34,7 +34,7 @@ UI & Styling
 - TailwindCSS : Framework CSS utilitaire pour un développement rapide
 - React Router : Gestion du routing côté client
 
-#Architecture
+# Architecture
 - Pattern MVC modifié
 - Gestion d'état avec Context API
 - Services pour la logique métier
