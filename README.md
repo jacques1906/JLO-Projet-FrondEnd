@@ -40,15 +40,5 @@ Architecture
 - Services pour la logique métier
 - Composants réutilisables
 
-Structure du Projet
-src/
-├── components/    # Composants réutilisables
-├── contexts/      # Contextes React (thème, etc.)
-├── services/      # Services (API, storage)
-├── controllers/   # Logique métier
-├── types/         # Types TypeScript
-├── hooks/         # Hooks personnalisés
-└── views/         # Pages de l'application
-
 Auteur
 Jacques Z
