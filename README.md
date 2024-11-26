@@ -3,7 +3,7 @@ Gestionnaire de Tâches
 Une application de gestion de tâches moderne développée avec React et TypeScript, offrant une interface utilisateur intuitive avec gestion de thèmes et notifications.
 
 # Cloner le projet
-git clone https://github.com/jacques1906/JLO-Projet-FrondEnd/edit/develop/README.md
+git clone https://github.com/jacques1906/JLO-Projet-FrondEnd
 
 # Installer les dépendances
 npm install
