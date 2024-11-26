@@ -103,7 +103,7 @@ const TaskList = ({ showPendingOnly, showCompletedOnly }: TaskListProps) => {
       <div className="space-y-6">
         <TaskHeader 
           title={pageTitle}
-          showDeleteButton={showCompletedOnly && filteredTasks.length > 0}
+          showDeleteButton={!!(showCompletedOnly && filteredTasks.length > 0)}
           onDeleteAll={handleDeleteCompleted}
         />
         <ul className="space-y-3">
