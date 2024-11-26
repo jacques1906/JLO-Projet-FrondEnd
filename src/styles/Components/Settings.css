@@ -5,7 +5,7 @@
 }
 
 .settings-section {
-  background: #1a1a1a;
+  background: var(--tertiary-background);
   padding: 1.5rem;
   border-radius: 8px;
   margin-bottom: 2rem;
@@ -38,7 +38,7 @@
 }
 
 .theme-colors h4 {
-  color: #888;
+  color: var(--text-color);
   margin-bottom: 1rem;
 }
 
@@ -57,11 +57,25 @@
   padding: 0.5rem 1rem;
   transition: all 0.3s ease;
   text-transform: capitalize;
+  color: #ffffff;
+}
+
+.color-option[aria-label="Thème Sombre"] {
+  background-color: #260C1A !important;
+  color: #AF8D86;
+}
+
+.color-option[aria-label="Thème Gris"] {
+  color: #ffffff;
+}
+
+.color-option[aria-label="Thème Beige"] {
+  color: #333333;
 }
 
 .color-option.active {
-  border-color: var(--theme-color);
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
 }
 
 .color-option:hover {
