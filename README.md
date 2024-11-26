@@ -6,13 +6,13 @@ Une application de gestion de tâches moderne développée avec React et TypeScr
 git clone https://github.com/jacques1906/JLO-Projet-FrondEnd
 
 # Installer les dépendances
-npm install
+yarn install
 
 # Lancer en développement
-npm run dev
+yarn  dev
 
 # Build production
-npm run build
+yarn build
 
 Fonctionnalités
 Implémentées
